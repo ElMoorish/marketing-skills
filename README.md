@@ -116,12 +116,15 @@ Or copy them to `~/.claude/skills/` to use them in every project.
 
 ### Claude (claude.ai and the desktop app)
 
-1. Download the ZIPs from the latest [release](../../releases), or build them yourself:
+1. Build the files (or download them from a [release](../../releases) when one is published):
    ```bash
-   python3 scripts/build.py      # writes dist/<skill>.zip
+   python3 scripts/build.py
+   # dist/marketing-skills-plugin.zip  -> all five skills as one plugin
+   # dist/<skill>.zip                  -> one skill per ZIP
    ```
-2. In Claude, go to **Settings > Capabilities**, make sure code execution is on, and upload
-   each ZIP under **Skills**. (Menu names can change; see Anthropic's
+2. Make sure code execution is on, then either upload `marketing-skills-plugin.zip` as a
+   **plugin**, or upload each `<skill>.zip` under **Skills**. Don't upload a ZIP that contains
+   other ZIPs. (Menu names can change; see Anthropic's
    [custom skills guide](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills).)
 3. Fill in [`.agents/brand-context.md`](.agents/brand-context.md) (or ask Claude to run
    `brand-context-builder`) and add it to your Claude Project's knowledge.
