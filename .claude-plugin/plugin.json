@@ -1,0 +1,14 @@
+{
+  "name": "marketing-skills",
+  "version": "0.1.0",
+  "description": "Five focused marketing skills (brand context, SEO audit, content brief, social posts, campaign review) that share one brand file.",
+  "author": {
+    "name": "Ayman (ElMoorish)",
+    "url": "https://github.com/ElMoorish"
+  },
+  "homepage": "https://github.com/ElMoorish/marketing-skills",
+  "repository": "https://github.com/ElMoorish/marketing-skills",
+  "license": "MIT",
+  "keywords": ["marketing", "seo", "content", "social-media", "copywriting", "agent-skills"],
+  "skills": "./.agents/skills/"
+}
