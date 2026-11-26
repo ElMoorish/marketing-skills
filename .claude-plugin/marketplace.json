@@ -1,0 +1,17 @@
+{
+  "name": "marketing-skills",
+  "owner": {
+    "name": "Ayman (ElMoorish)",
+    "url": "https://github.com/ElMoorish"
+  },
+  "description": "Open-source marketing skills for AI agents.",
+  "plugins": [
+    {
+      "name": "marketing-skills",
+      "source": ".",
+      "description": "Five focused marketing skills (brand context, SEO audit, content brief, social posts, campaign review) that share one brand file.",
+      "category": "marketing",
+      "tags": ["marketing", "seo", "content", "social-media"]
+    }
+  ]
+}

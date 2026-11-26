@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="SEO audit">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2EC4B6"/><stop offset="1" stop-color="#3A86FF"/></linearGradient></defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="29" cy="29" r="11"/><path d="M37.5 37.5L46 46"/><path d="M24 31l4-4 3 3 4-5"/>
+  </g>
+</svg>
