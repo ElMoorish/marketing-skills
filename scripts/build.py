@@ -9,11 +9,15 @@ Usage:
     python3 scripts/build.py --install PATH  # validate, then copy skills into
                                              # PATH/.claude/skills/ for Claude Code
 
+A full build also writes dist/marketing-skills-plugin.zip: one plugin file
+(.claude-plugin/plugin.json + skills/) for Claude's plugin upload.
+
 Each ZIP has the skill folder at its root (my-skill.zip -> my-skill/SKILL.md),
 which is the layout Claude expects for custom skill uploads.
 """
 
 import argparse
+import json
 import re
 import shutil
 import sys
@@ -157,6 +161,26 @@ def build_zip(skill_dir):
     return out
 
 
+def build_plugin_zip(dirs):
+    """One ZIP with .claude-plugin/plugin.json at its root and skills under skills/."""
+    manifest = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    manifest.pop("skills", None)  # skills/ is the default location inside the plugin ZIP
+    DIST_DIR.mkdir(exist_ok=True)
+    out = DIST_DIR / (manifest["name"] + "-plugin.zip")
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr(".claude-plugin/plugin.json", json.dumps(manifest, indent=2) + "\n")
+        icon = ROOT / ".claude-plugin" / "icon.png"
+        if icon.is_file():
+            zf.write(icon, ".claude-plugin/icon.png")
+        for extra in ("README.md", "LICENSE"):
+            if (ROOT / extra).is_file():
+                zf.write(ROOT / extra, extra)
+        for d in dirs:
+            for path in skill_files(d):
+                zf.write(path, (Path("skills") / d.name / path.relative_to(d)).as_posix())
+    return out
+
+
 def install(skill_dir, target_root):
     dest = Path(target_root).expanduser().resolve() / ".claude" / "skills" / skill_dir.name
     if dest.exists():
@@ -192,6 +216,7 @@ def main():
         return
     for d in dirs:
         print("built      " + str(build_zip(d).relative_to(ROOT)))
+    print("built      " + str(build_plugin_zip(dirs).relative_to(ROOT)))
 
 
 if __name__ == "__main__":
